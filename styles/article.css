@@ -227,5 +227,5 @@ footer {
   margin-left: 40px;
   text-align: justify;      /* Rata kanan kiri */
   text-justify: inter-word; /* Merenggangkan spasi antarkata */
-  line-height: 1.7;
+  line-height: 1.0;
 }
