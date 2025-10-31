@@ -191,7 +191,7 @@ header::after {
 
 .cta-card {
     background: linear-gradient(145deg, rgba(28,52,92,0.95), rgba(12,26,56,0.95));
-    border: 1px solid rgba(34,211,238,0.25);
+    border: 1px solid rgba(34, 211, 238, 0.25);
     border-radius: 28px;
     padding: 30px 28px 34px;
     flex: 1 1 240px;
