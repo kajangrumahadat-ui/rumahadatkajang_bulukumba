@@ -1,106 +1,42 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Model 3D Rumah Adat Kajang</title>
-    <style>
-        body { margin: 0; overflow: hidden; }
-        #viewer { width: 100vw; height: 100vh; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model Rumah Kajang</title>
+    
+    <link rel="stylesheet" href="styles/model.css"> 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
 </head>
 <body>
+    <header>
+        <div class="page-actions-model">
+            <a href="article.html" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Kembali
+            </a>
+        </div>
+        <h1>3D Model Rumah Adat Kajang</h1>
+    </header>
 
-<div id="viewer"></div>
+    <div class="shell">
+        <div class="content-3d-card">
+            <div id="3d-container"></div> 
+            
+            <div id="loading-indicator">
+                Memuat Model 3D Rumah Adat... 0%
+            </div>
+        </div>
+    </div>
 
-<!-- THREE.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
-
-<!-- LOADER GLB -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/loaders/GLTFLoader.js"></script>
-
-<!-- CAMERA CONTROLS -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/controls/OrbitControls.js"></script>
-
-<script>
-    // =========================
-    // 1. Setup Scene
-    // =========================
-    const container = document.getElementById("viewer");
-
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf0f0f0);
-
-    const camera = new THREE.PerspectiveCamera(
-        45,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        2000
-    );
-    camera.position.set(8, 6, 10);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
-
-    // =========================
-    // 2. Lighting
-    // =========================
-    const light1 = new THREE.HemisphereLight(0xffffff, 0x444444, 2);
-    scene.add(light1);
-
-    const light2 = new THREE.DirectionalLight(0xffffff, 2);
-    light2.position.set(10, 20, 10);
-    scene.add(light2);
-
-    // =========================
-    // 3. Camera Controls
-    // =========================
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-
-    // =========================
-    // 4. Load GLB Model
-    // =========================
-    const loader = new THREE.GLTFLoader();
-
-    loader.load(
-        "assets/3d_models/rumah_adat_kajang.glb",
-        function (gltf) {
-            const model = gltf.scene;
-
-            // Scale model (karena model dari Blender biasanya besar)
-            model.scale.set(0.02, 0.02, 0.02);
-
-            // Posisikan model
-            model.position.set(0, 0, 0);
-
-            scene.add(model);
-        },
-        undefined,
-        function (error) {
-            console.error("Gagal memuat GLB:", error);
-        }
-    );
-
-    // =========================
-    // 5. Animate Loop
-    // =========================
-    function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-    }
-    animate();
-
-    // =========================
-    // 6. Resize Handling
-    // =========================
-    window.addEventListener("resize", () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-</script>
-
+    <footer>
+        © 2025 Etnomatematika Rumah Adat Kajang
+    </footer>
+    
+    <script src="main.js"></script> 
 </body>
 </html>
