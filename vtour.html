@@ -33,9 +33,6 @@
   <button onclick="viewer.loadScene('s3')">3</button>
   <button onclick="viewer.loadScene('s4')">4</button>
   <button onclick="viewer.loadScene('s5')">5</button>
-  <button onclick="viewer.loadScene('s6')">6</button>
-  <button onclick="viewer.loadScene('s7')">7</button>
-  <button onclick="viewer.loadScene('s8')">8</button>
 </div>
 
 <script>
@@ -48,7 +45,7 @@
     },
     "scenes": {
       "s0":  { "title": "depan rumah",  "type": "equirectangular", "panorama": "assets/360_images/depan rumah.jpg",  "hotSpots": [
-        { "pitch": 0, "yaw": 0, "type": "scene", "sceneId": "s1",  "text": "depan tangga" },
+        { "pitch": 0, "yaw": -3, "type": "scene", "sceneId": "s1",  "text": "depan tangga" },
         {
             "pitch": 24,
             "yaw": 0.75,
@@ -59,12 +56,9 @@
       ] },
       "s1":  { "title": "depan tangga",  "type": "equirectangular", "panorama": "assets/360_images/depan tangga.jpg",  "hotSpots": [{ "pitch": 0, "yaw": 0, "type": "scene", "sceneId": "s2",  "text": "depan pintu" }] },
       "s2":  { "title": "depan pintu",  "type": "equirectangular", "panorama": "assets/360_images/depan pintu.jpg",  "hotSpots": [{ "pitch": 0, "yaw": 0, "type": "scene", "sceneId": "s3",  "text": "ruang tengah" }] },
-      "s3":  { "title": "ruang tengah",  "type": "equirectangular", "panorama": "assets/360_images/ruang tengah.jpg",  "hotSpots": [{ "pitch": 0, "yaw": 0, "type": "scene", "sceneId": "s4",  "text": "depan kamar" }] },
+      "s3":  { "title": "ruang tengah",  "type": "equirectangular", "panorama": "assets/360_images/ruang tengah.jpg",  "yaw": -180, "hotSpots": [{ "pitch": 0, "yaw": -220, "type": "scene", "sceneId": "s4",  "text": "depan kamar" }] },
       "s4":  { "title": "depan kamar",  "type": "equirectangular", "panorama": "assets/360_images/depan kamar.jpg",  "hotSpots": [{ "pitch": 0, "yaw": 0, "type": "scene", "sceneId": "s5",  "text": "kamar" }] },
-      "s5":  { "title": "kamar",  "type": "equirectangular", "panorama": "assets/360_images/kamar.jpg",  "hotSpots": [{ "pitch": 0, "yaw": 0, "type": "scene", "sceneId": "s6",  "text": "kolong" }] },
-      "s6":  { "title": "kolong",  "type": "equirectangular", "panorama": "assets/360_images/kolong.jpg",  "hotSpots": [{ "pitch": 0, "yaw": 0, "type": "scene", "sceneId": "s7",  "text": "kanan" }] },
-      "s7":  { "title": "kanan",  "type": "equirectangular", "panorama": "assets/360_images/kanannya.jpg",  "hotSpots": [{ "pitch": 0, "yaw": 0, "type": "scene", "sceneId": "s8",  "text": "belakang" }] },
-      "s8":  { "title": "belakang",  "type": "equirectangular", "panorama": "assets/360_images/belakang.jpg" }
+      "s5":  { "title": "kamar",  "type": "equirectangular", "panorama": "assets/360_images/kamar.jpg"}
     }
   });
 
