@@ -1,112 +1,204 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Model Rumah Adat Kajang</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Model 3D – Rumah Adat Kajang</title>
 
-  <!-- Import Model Viewer -->
+  <!-- Font agar konsisten dengan halaman lain -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- model-viewer -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
+    :root{
+      /* Warna dan variabel mengikuti desain yang kamu beri */
+      --bg:#0b1020; --ink:#e6edf3; --muted:#9fb0c4; --panel:#0f162e; --line:#1f2a44; --accent:#22d3ee;
+      --article-primary:#007bff; --article-light:#f4f4f4; --article-text-light:#e0e0e0; --article-text-muted:#aaaaaa;
+      --article-bg-card:#1e1e1e; --article-code-bg:#2a2a2a;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body {
-      background-color: #0d1117;
-      color: #e5e5e5;
-      font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--ink);
     }
 
-    /* Tombol di pojok kiri atas */
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 25px;
-      background-color: #00c8ff;
-      color: #0d1117;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 200, 255, 0.3);
+    /* Header */
+    header{
+      padding:18px 16px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
+      text-align: center; 
+    }
+    header h1 {
+      font-size: 2.4rem;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+    header .muted {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 750px;
+      margin: 0 auto;
     }
 
-    .back-button:hover {
-      background-color: #008cbf;
-      box-shadow: 0 6px 16px rgba(0, 200, 255, 0.45);
-      transform: translateY(-2px);
-    }
+    .shell{max-width:1100px; margin:24px auto 40px; padding:0 20px}
 
-    h1 {
-      font-size: 1.8rem;
-      color: #00c8ff;
-      margin-bottom: 25px;
-      border-bottom: 2px solid #00c8ff;
-      padding-bottom: 8px;
-      letter-spacing: 1px;
-      text-align: center;
-    }
+    .page-actions{display:flex; margin:4px 0 16px}
+    .back-home{
+      display:inline-flex; gap:6px; align-items:center;
+      padding:10px 16px; border-radius:999px;
+      border:1px solid rgba(34,211,238,.4); color:var(--accent);
+      text-decoration:none; font-weight:600; font-size:14px;
+      transition:background-color .2s, transform .2s}
+    .back-home:hover{background:rgba(34,211,238,.16); transform:translateY(-1px)}
 
-    .model-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #111827;
-      border-radius: 12px;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
-      padding: 10px;
-      margin-bottom: 25px;
-      width: 90%;
-      max-width: 700px;
-      height: 400px;
+    /* Kartu konten utama */
+    .content{
+      background:var(--article-bg-card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; padding:28px;
+      box-shadow:0 15px 40px rgba(0,0,0,.35);
     }
+    .content h2{margin:0 0 14px; border-bottom:2px solid var(--article-primary); padding-bottom:10px}
+    .content p{color:var(--article-text-light); line-height:1.7}
 
-    model-viewer {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-      background-color: #111827;
+    /* Panel 3D */
+    .viewer-wrap{
+      display:grid; grid-template-columns: 1fr 300px; gap:22px; align-items:start;
     }
+    @media (max-width: 900px){ .viewer-wrap{grid-template-columns: 1fr} }
 
-    footer {
-      font-size: 0.85rem;
-      color: #888;
-      text-align: center;
-      position: fixed;
-      bottom: 15px;
+    model-viewer{
+      width:100%; height:520px; border-radius:12px; overflow:hidden;
+      background: radial-gradient(1200px 400px at 50% 100%, #0b162f 0%, #0b1020 70%);
+      border:1px solid rgba(255,255,255,.06);
     }
+    /* tombol bawaan model-viewer */
+    model-viewer::part(default-ar-button){display:none}
+    model-viewer::part(progress-bar){background:rgba(255,255,255,.15)}
+    model-viewer::part(hit-test-button){background:var(--accent)}
+
+    /* Panel kontrol */
+    .panel{
+      background:var(--panel); border:1px solid var(--line);
+      border-radius:12px; padding:16px; display:grid; gap:14px;
+    }
+    .panel h3{margin:0; font-size:16px}
+    .control{display:grid; gap:6px}
+    .control label{font-size:13px; color:var(--muted)}
+    .row{display:flex; gap:10px; flex-wrap:wrap}
+
+    input[type="range"]{width:100%}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 14px; border-radius:999px; border:1px solid rgba(34,211,238,.35);
+      color:var(--accent); text-decoration:none; background:transparent; cursor:pointer;
+      font-weight:600; font-size:14px; transition:background-color .2s, transform .2s;
+    }
+    .btn:hover{background:rgba(34,211,238,.12); transform:translateY(-1px)}
+    .btn-primary{background:var(--accent); color:#001018; border:none}
+    .btn-primary:hover{box-shadow:0 8px 24px rgba(34,211,238,.35)}
+
+    footer{color:var(--muted); font-size:12px; text-align:center; padding:26px 16px}
   </style>
 </head>
 <body>
+  <header>
+    <h1>Model 3D – Rumah Adat Kajang</h1>
+    <div class="muted">Putar, perbesar, dan amati detail konstruksinya langsung di browser.</div>
+  </header>
 
-  <!-- Tombol kiri atas -->
-  <button class="back-button" onclick="window.location.href='index.html'">← Kembali ke beranda</button>
+  <div class="shell">
+    <div class="page-actions">
+      <a class="back-home" href="index.html">← Kembali ke Beranda</a>
+    </div>
 
-  <h1>3D Model Rumah Adat Kajang</h1>
+    <section class="content">
+      <h2>Pratinjau Interaktif</h2>
 
-  <div class="model-container">
-    <!-- Ganti src dengan path model GLB kamu -->
-    <model-viewer 
-      src="assets/3d_model/rumah_adat_kajang.glb" 
-      alt="Model 3D rumah adat kajang"
-      camera-controls 
-      auto-rotate 
-      shadow-intensity="1"
-      exposure="1.2"
-      ar
-      camera-orbit="180deg 90deg 2m">
-    </model-viewer>
+      <div class="viewer-wrap">
+        <!-- GANTI src GLB sesuai lokasi file kamu -->
+        <model-viewer id="viewer"
+        src="assets\3d_model/rumah_adat_kajang.glb"
+        camera-controls
+        touch-action="pan-y"
+        shadow-intensity="0.6"
+        exposure="1.0"
+        environment-image="neutral"
+        poster="assets\images\main_img.png"
+        ar ar-modes="webxr scene-viewer quick-look"
+        alt="Model 3D rumah adat Kajang"
+        camera-orbit="180deg 80deg auto"> </model-viewer>
+
+        <aside class="panel">
+          <h3>Pengaturan Tampilan</h3>
+
+          <div class="control">
+            <label for="exp">Eksposur</label>
+            <input id="exp" type="range" min="0.3" max="2.2" step="0.05" value="1.0">
+          </div>
+
+          <div class="control">
+            <label for="shadow">Bayangan</label>
+            <input id="shadow" type="range" min="0" max="1" step="0.05" value="0.6">
+          </div>
+
+          <div class="row">
+            <button class="btn" id="fit">Fit Kamera</button>
+            <button class="btn" id="reset">Reset</button>
+            <a class="btn btn-primary" id="full" href="#!">Layar Penuh</a>
+          </div>
+
+          <p class="muted" style="color:var(--muted); margin:6px 0 0">
+            Navigasi: drag untuk orbit, scroll untuk zoom, dan seret dua jari untuk pan.
+          </p>
+        </aside>
+      </div>
+
+      <h2 style="margin-top:28px">Keterangan</h2>
+      <p>
+        Model 3D ini digunakan untuk mendukung pembelajaran etnomatematika: mengamati proporsi,
+        simetri, dan relasi geometri pada struktur <em>Rumah Adat Kajang</em>. Halaman ini mengikuti
+        skema warna dan tipografi yang sama dengan halaman lain agar pengalaman pengguna konsisten.
+      </p>
+    </section>
   </div>
 
-  <footer>© · 2025 Etnomatematika Rumah Adat Kajang</footer>
+  <footer>© 2025 · Model 3D Rumah Adat Kajang · Dibangun untuk pembelajaran etnomatematika</footer>
 
+  <script>
+    const mv = document.getElementById('viewer');
+    const exp = document.getElementById('exp');
+    const shadow = document.getElementById('shadow');
+    const fit = document.getElementById('fit');
+    const reset = document.getElementById('reset');
+    const full = document.getElementById('full');
+
+    exp.addEventListener('input', e => mv.exposure = parseFloat(e.target.value));
+    shadow.addEventListener('input', e => mv.shadowIntensity = parseFloat(e.target.value));
+
+    fit.addEventListener('click', () => {
+      try { mv.cameraOrbit = 'auto auto auto'; mv.jumpCameraToGoal(); } catch {}
+    });
+
+    const defaults = { exposure: mv.exposure, shadow: mv.shadowIntensity, orbit: mv.cameraOrbit };
+    reset.addEventListener('click', () => {
+      mv.exposure = defaults.exposure;
+      mv.shadowIntensity = defaults.shadow;
+      mv.cameraOrbit = defaults.orbit;
+      exp.value = defaults.exposure;
+      shadow.value = defaults.shadow;
+    });
+
+    full.addEventListener('click', () => {
+      const el = mv;
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (el.requestFullscreen) el.requestFullscreen();
+    });
+  </script>
 </body>
 </html>
