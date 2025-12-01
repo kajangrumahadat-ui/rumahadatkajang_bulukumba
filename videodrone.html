@@ -2,117 +2,156 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Drone Rumah Adat Kajang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Droen – Rumah Adat Kajang</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      background-color: #0d1117;
-      color: #e5e5e5;
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
+    :root{
+      --bg:#0b1020; --ink:#e6edf3; --muted:#9fb0c4;
+      --panel:#0f162e; --line:#1f2a44; --accent:#22d3ee;
+      --article-primary:#007bff; --article-light:#f4f4f4;
+      --article-text-light:#e0e0e0; --article-text-muted:#aaaaaa;
+      --article-bg-card:#1e1e1e; --article-code-bg:#2a2a2a;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:Poppins, system-ui, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
     }
 
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 25px;
-      background-color: #00c8ff;
-      color: #0d1117;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 200, 255, 0.3);
+    /* HEADER */
+    header{
+      padding:26px 18px;
+      text-align:center;
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0));
+      border-bottom:1px solid var(--line);
+    }
+    header h1 {
+      font-size: 2.4rem;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+    header h2{
+      margin-top:6px;
+      color:var(--muted);
+      font-weight:400;
+      font-size:clamp(16px,2vw,20px);
+    }
+    header .muted {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 750px;
+      margin: 0 auto;
     }
 
-    .back-button:hover {
-      background-color: #008cbf;
-      box-shadow: 0 6px 16px rgba(0, 200, 255, 0.45);
-      transform: translateY(-2px);
+    .shell{
+      max-width:1100px;
+      margin:30px auto;
+      padding:0 22px 50px;
     }
 
-    h1 {
-      font-size: 1.8rem;
-      color: #00c8ff;
-      margin-bottom: 10px;
-      border-bottom: 2px solid #00c8ff;
-      padding-bottom: 8px;
-      letter-spacing: 1px;
-      text-align: center;
+    /* BACK BUTTON */
+    .page-actions{display:flex; margin-bottom:18px;}
+    .back-home{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:10px 18px; border-radius:999px;
+      border:1px solid rgba(34,211,238,.4);
+      color:var(--accent); text-decoration:none;
+      background:transparent; font-weight:600; font-size:14px;
+      transition:.2s;
+    }
+    .back-home:hover{
+      background:rgba(34,211,238,.16);
+      transform:translateY(-1px);
     }
 
-    .description {
-      max-width: 700px;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #c9d1d9;
-      margin-bottom: 22px;
-      text-align: justify; /* PARAGRAF JUSTIFY */
+    /* CONTENT CARD */
+    .content{
+      background:var(--article-bg-card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      padding:32px;
+      box-shadow:0 15px 40px rgba(0,0,0,.35);
     }
 
-    .model-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #111827;
-      border-radius: 12px;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
-      padding: 10px;
-      margin-bottom: 25px;
-      width: 90%;
-      max-width: 700px;
-      height: 400px;
+    .content h3{
+      font-size:22px;
+      margin-top:0;
+      margin-bottom:16px;
+      border-left:4px solid var(--article-text-muted);
+      padding-left:12px;
+    }
+    .content p{
+      line-height:1.7;
+      color:var(--article-text-light);
+      margin-bottom:18px;
     }
 
-    video {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-      background-color: #000;
-      object-fit: cover;
+    .content video{
+      width:100%;
+      height:auto;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.1);
+      margin-top:14px;
+      margin-bottom:14px;
     }
 
-    footer {
-      font-size: 0.85rem;
-      color: #888;
-      text-align: center;
-      position: fixed;
-      bottom: 15px;
+    footer{
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+      padding:26px 16px;
     }
   </style>
 </head>
 <body>
 
-  <button class="back-button" onclick="window.location.href='index.html'">← Kembali ke beranda</button>
+  <!-- HEADER -->
+  <header>
+    <h1>Video Drone-Rumah Adat Kajang</h1>
+    <div class="muted">Amati proporsi, simetri, dan struktur geometri dari sudut pandang udara.</div>
+  </header>
 
-  <h1>Video Drone Rumah Adat Kajang</h1>
+  <div class="shell">
 
-  <p class="description">
-    Video drone ini menampilkan sudut pandang udara dari Rumah Adat Kajang, memperlihatkan
-    bentuk susunan atap, dinding, dan keseluruhan kompleks bangunan dari perspektif
-    yang tidak dapat dijangkau secara langsung. Melalui rekaman ini, pengunjung dapat memahami
-    skala, proporsi, serta tata ruang rumah adat kajang dengan lebih jelas sebelum menjelajahi tur
-    virtual yang tersedia.
-  </p>
+    <div class="page-actions">
+      <a class="back-home" href="index.html">← Kembali ke Beranda</a>
+    </div>
 
-  <div class="model-container">
+    <section class="content">
+
+      <h3>Representasi Proyeksi Rumah Adat Kajang</h3>
+      <p>
+        Projective Geometri membantu kita memahami bagaimana bentuk tiga dimensi Rumah Adat Bugis
+        dapat diproyeksikan ke dalam dua dimensi tanpa kehilangan hubungan antar titik, garis,
+        dan bidangnya. Diagram berikut menunjukkan transformasi dari foto asli, penarikan garis
+        struktur, hingga model wireframe hasil proyeksi.
+      </p>
+
+      <div class="model-container">
     <video controls>
       <source src="assets/video_kajang_drone/rumah_kajang_drone.mp4" type="video/mp4">
       Browser Anda tidak mendukung pemutar video.
     </video>
   </div>
 
-  <footer>©·2025 Etnomatematika Rumah Adat Kajang</footer>
+      <p>
+        Melalui pendekatan proyeksi ini, pola atap, simetri, sudut, dan proporsi bangunan dapat
+        diamati secara lebih matematis. Teknik ini juga menjadi jembatan antara arsitektur tradisional
+        dan analisis geometri modern.
+      </p>
+
+    </section>
+
+  </div>
+
+  <footer>
+    © 2025 · Projective Geometri Rumah Kajang · Etnomatematika · Tim Pengembang Rumah Adat Kajang
+  </footer>
 
 </body>
 </html>
